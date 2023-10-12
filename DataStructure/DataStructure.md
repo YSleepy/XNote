@@ -147,3 +147,9 @@ ThrNode<DataType>* InitThrBiTree(ThrNode<DataType>*bt){
 4. 如果count<结点数则有回路
    
 # 邻接矩阵
+
+
+# 常用公式
+
+* 给定有序数组n个数据用二分法查找最多比较次数：$\lceil \log _2(n+1) \rceil$
+* 给定二叉树先序序列可有$\frac{1}{n+1}C_{2n}^n$个对应树
