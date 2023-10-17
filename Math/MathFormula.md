@@ -56,6 +56,10 @@ $$
     &=\frac{n-1}{n}\cdot \frac{n-3}{n-2}\cdot ...\cdot \frac{3}{4} \cdot \frac{1}{2} \cdot \frac{\pi}{2}(n为偶数)
 \end{aligned}
 $$
+
+# 积分注意事项：
+* $\frac{dp}{p}=\frac{dx}{x}左右积分就写出\ln p = \ln x +\ln c$
+
 # 极限类型
 
 * $1^\infty$ 型 化为 $\lim _{x->\infty}(1+f(x))^{g(x)}$ 求$\lim _{x->\infty}g(x)f(x)$ 结果$e^{\lim _{x->\infty}g(x)f(x)}$
