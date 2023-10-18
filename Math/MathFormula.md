@@ -32,13 +32,20 @@ $$
     &x-\ln (1+x)\sim \frac{1}{2}x^2
 \end{aligned}
 $$
-
+ 
 # 积分
 
 $$
 \begin{aligned}
+    &\int \ln x dx = x\ln x-x+C \\
+    &\int a^x \ln a dx = a^x+C \\
+    &\int \frac{1}{x \ln a}dx = \log _a x+C \\
+    &\int \sec ^2 xdx = \tan x+C \\
+    &\int -\csc ^2 xdx = \cot x+C \\
     &\int \tan x dx = -\ln |cosx|+C \\
     &\int \cot x dx = \ln |sinx|+C \\
+    &\int \sec x \tan x dx = \sec x+C \\
+    &\int -\csc x \cot xdx = \csc x+C\\
     &\int \sec x dx = \ln |secx + tanx|+C \\
     &\int \csc x dx = \ln |cscx - cotx|+C \\
     &\int \frac{dx}{a^2+x^2} = \frac{1}{a} \arctan \frac{x}{a}+C \\
@@ -59,12 +66,14 @@ $$
 
 # 积分注意事项：
 * $\frac{dp}{p}=\frac{dx}{x}左右积分就写出\ln p = \ln x +\ln c$
+* $弧微分L=∫ \sqrt{r^2+(\frac{dr}{dθ})^2}dθ$
 
 # 极限类型
 
 * $1^\infty$ 型 化为 $\lim _{x->\infty}(1+f(x))^{g(x)}$ 求$\lim _{x->\infty}g(x)f(x)$ 结果$e^{\lim _{x->\infty}g(x)f(x)}$
 * 极限时可以算出来的非零因数就算出来，算出含有x的表达式也可以只要不是零
 * 遇到$f(g(x))-f(w(x))$这样的表达式可以使用拉格朗日中值定理$f'(c) = (f(b)-f(a))/(b-a)$
+* 
 # 微分方程
 
 一阶线性齐次微分方程 $y'+P(x)y=0$
@@ -322,4 +331,7 @@ $$
 
 $$
 
-vscode 更改
+$$
+\int rd \theta \int \sqrt{r^2+2'^2}d\theta
+
+$$

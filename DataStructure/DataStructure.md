@@ -118,9 +118,10 @@ ThrNode<DataType>* InitThrBiTree(ThrNode<DataType>*bt){
 * 当前序遍历XY后续遍历YX一定有X是Y的父亲结点
 
 
-# 哈夫曼树前缀码
+# 哈夫曼树
 
-* 定义：在一个字符集中，任何一个字符编码都不是另一个字符编码的前缀。
+* 前缀码：定义：在一个字符集中，任何一个字符编码都不是另一个字符编码的前缀。
+* WPL（加权路径长度）：WPL 的值通常用来评估哈夫曼编码的效率，因为它反映了字符编码的平均位数。较低的 WPL 表示较短的编码长度，从而更有效地表示字符。
 
 # AOE网络关键路径
 
@@ -145,7 +146,33 @@ ThrNode<DataType>* InitThrBiTree(ThrNode<DataType>*bt){
 2. 栈非空，输出栈顶元素。并记录输出结点个数count，循环2-3
 3. 遍历该节点对应的边，使终点结点入度减一，如果结点入度为零则添加到栈
 4. 如果count<结点数则有回路
-   
+
+# 邻接表的定义
+
+```C++
+
+typedef struct VNode
+{
+	VerTexType data;         //顶点信息
+	ArcNode *firstarc;       //指向第一条依附该顶点的边的指针
+}VNode,AdjList[MVNum];
+
+#define MVNum 100                //最大顶点数
+typedef struct ArcNode           //边结点
+{
+	int adjvex;                  //该边所指向的顶点的位置
+	struct ArcNode *nextarc;     //指向下一条边的指针
+	OtherInfo info;              //和边相关的信息(权值等)
+}ArcNode;
+
+typedef struct
+{
+	AdjList vertices;      //存放各个顶点的数组
+	int vexnum, arcnum;    //图的当前顶点数和弧数
+}ALGraph;
+
+```
+![](邻接表链式表示.png)
 # 邻接矩阵
 
 
@@ -166,3 +193,95 @@ ThrNode<DataType>* InitThrBiTree(ThrNode<DataType>*bt){
 # 散列表
 
 * 除数余数法：假定散列表表长为m，取质数p不大于m且最大。
+
+# Sort
+
+# 希尔排序
+----------
+希尔排序的主要思想：插入排序对于比较有序的数列具有较好的性能<br>
+通过改变部分数组序列的有序性来提高后面排序的性能
+```C++
+	template<class Elem>
+	template<class _RanIt, class _Pr>
+	inline void X_Sort<Elem>::X_Sort_Shell(const _RanIt _First, const _RanIt _Last, _Pr _Pred)
+	{
+		tl size = _Last - _First;
+		tl gap = size / 2;
+		while (gap > 0) {							//间隔数到1时就是整个数组排序
+			for (tl i = gap; i < size; ++i) {		//对每一个元素进行插入排序，这里不是每个子序列分别排序。
+				for (tl j = i; j >= gap && _Pred(*(_First + j - gap), *(_First + j)); j -= gap) {//该元素的插入排序
+					X_std::swap(*(_First + j - gap), *(_First + j));
+				}
+			}
+			gap /= 2;
+		}
+	}
+```
+> 这里解释一下while内部的两个循环的作用。两个循环就是将所有的以gap为间隔的子序列进行排序
+，但是这里并没有显式的分别对子序列排序，而是采用了混合排序。如下标：<br>
+0,1,2,3,4,5,6,7,8,9 <br>
+假如gap=2分组如下:<br>
+0,2,4,6,8 ;;1,3,5,7,9<br>
+正常分子序列排序需要分别从2，3开始排序，（1，3为插入排序未排序部分开头），一直遍历到最后，
+如果我们从2开始让2进行插入排序，这个时候可以对4进行排序了，但是我们在中间插入个对3排序
+这也不影响对4排序。就是这么个过程。
+# C++ 标准排序算法实现
+----------
+在C++标准库中，std::sort使用的是一种混合的排序算法，通常称为introsort（内省排序）。
+<span style = "color : pink">introsort是一种结合了快速排序（quicksort）、堆排序（heapsort）和插入排序（insertion sort）的排序算法。
+</span> std::sort会根据输入数据的大小和递归深度来选择合适的排序策略，以提供高效的排序性能。<br>
+
+具体来说，当数组的大小较小时，std::sort会使用插入排序（insertion sort）来进行排序，因为插入排序在小规模数据上表现优秀。当递归深度超过一定阈值时，
+为了避免快速排序的最坏情况（当数据近乎有序时快速排序性能下降较严重），
+std::sort会切换到堆排序（heapsort）来保证排序性能的稳定性。
+而对于大规模数据和适度深度的递归，std::sort会使用快速排序（quicksort），因为快速排序通常在平均情况下具有较好的性能。<br>
+
+总的来说，std::sort使用introsort算法来获得快速排序、堆排序和插入排序的优点，以在不同情况下提供高效的排序性能。
+introsort是一种通用且高效的排序算法，是C++标准库中std::sort的默认排序算法。<br>
+# 归并排序代码解析
+-----------
+```C++
+	template<class Elem>
+	template<class _RanIt, class _Pr>
+	inline void X_Sort<Elem>::X_Sort_Merge(const _RanIt _First, const _RanIt _Last, _Pr _Pred)
+	{
+		tl size = _Last - _First;//子序列大小
+		if (size <= 1)return;//当子序列大小为1时我们就不用再对他分左右排序了
+		_RanIt _Middle = _First + (size / 2);//找到中间值
+		X_Sort_Merge(_First, _Middle, _Pred);//这是一个[_First,_Middle),这里的_Middle相当于end迭代器,他是结束标识不参与排序
+		X_Sort_Merge(_Middle , _Last, _Pred);//这是一个[_Middle,_Last),这里的_Last相当于end迭代器
+
+		X_Merge(_First, _Middle, _Last, _Pred);//对上面排好序的俩个子序列归并
+	}
+```
+值得注意的是，在归并两个有序的子序列，哪个子序列先被遍历完是不确定的，尽管某个子序列较长他也可能被先遍历完
+# 快速排序
+-----------
+
+快速的基本思想：冒泡排序
+ 
+从待排序列随机取一个数作为基准，定义左右指针将右边的小于（大于）基准的数放到左边，
+将左边的大于（小于）基准的数放到右边，最后在左右指针相遇的地方就是基准确定的位置。
+然后在为基准左右子序列分别排序直到子序列大小为1为止。
+
+# 堆排序
+-----------
+
+堆排序基本思想：选择排序
+
+每次将最大或最小的元素放到root
+排序时将root元素与最后的元素交换位置，最后面的就是有序序列，交换位置后有序序列多一位，
+堆排序每次从无序序列中选择以为放到有序序列。
+
+对于堆的插入和删除：
+插入：就将新元素放到数组最后面，然后将新元素到root路径上的所有元素排序，
+删除：就将末尾元素放到被删除的位置，然后做heapfy操作。
+# 桶排序，计数排序，基数排序
+------------
+这三个排序算法思想较为一致
+* 桶排序：需要事先知道元素范围，分为多个均匀的桶，每个桶一个范围区间。先将元素按桶分组，
+  然后对每个桶内的元素排序（这里的算法任选），最后按顺序输出。
+* 计数排序：同桶排序类似，将桶的个数分为不可再分为止，每个桶的范围只是一个确定的元素值，
+  将元素按桶分好，按序输出即可
+* 基数排序：共0~9十个桶，所有元素从个位开始一直到最高位开始循环，每一位都按桶分组后输出，
+  直到最高位分组后输出即为结果。
