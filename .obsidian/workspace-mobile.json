@@ -1,0 +1,144 @@
+{
+  "main": {
+    "id": "4499eb52c22acf0e",
+    "type": "split",
+    "children": [
+      {
+        "id": "1d8b61e5853ff7e6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9af8beca38c3ce3f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Math/未命名.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "16d6484a5ec347e0",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "66cc5fe2f198cf11",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {
+            "sortOrder": "alphabetical"
+          }
+        }
+      },
+      {
+        "id": "091cb44c5ba56d5a",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
+          }
+        }
+      },
+      {
+        "id": "253ede8a8f205eb1",
+        "type": "leaf",
+        "state": {
+          "type": "tag",
+          "state": {
+            "sortOrder": "frequency",
+            "useHierarchy": true
+          }
+        }
+      },
+      {
+        "id": "dfab80445e852f69",
+        "type": "leaf",
+        "state": {
+          "type": "bookmarks",
+          "state": {}
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "right": {
+    "id": "c8c23285780be59b",
+    "type": "mobile-drawer",
+    "children": [
+      {
+        "id": "36090d92a9bda6fb",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "Math/未命名.md",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
+      },
+      {
+        "id": "895130525bc5c060",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "file": "Math/未命名.md",
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
+      },
+      {
+        "id": "6af6f28ff0bdaacb",
+        "type": "leaf",
+        "state": {
+          "type": "outline",
+          "state": {
+            "file": "Math/未命名.md"
+          }
+        }
+      }
+    ],
+    "currentTab": 0
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "66cc5fe2f198cf11",
+  "lastOpenFiles": [
+    "Math/MathFormula.md",
+    "Math/未命名.md",
+    "未命名 2",
+    "未命名 1",
+    "未命名",
+    "English/Engllish.md",
+    "CPP/stl.md"
+  ]
+}
