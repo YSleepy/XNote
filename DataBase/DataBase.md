@@ -28,7 +28,20 @@
 * 关系数据库模式：定义若干域，在定义若干关系模式
 * 关系数据库值：在某一时刻保存的关系的集合
 
+# 计算机系统的安全模型
 
+* 用户鉴定
+* 数据库安全控制保护：审计等
+* 操作系统安全
+* 数据密码存储
+
+# 数据库安全控制
+
+* 用户身份鉴别：静态，动态，生物，智能卡鉴别
+* 存取控制：定义用户权限，合法权限检查
+* 审计
+* 视图
+* 数据加密
 
 ## 三级模式结构
 
@@ -107,4 +120,48 @@ ManagerID：员工的直接上级经理的员工ID，它是对自身表中的Emp
 |x2|z1|
 |x3|z3|
 $Z_{x1}=\{z1,z2,z3\}$同理求得其他
+
+# MYSQL
+只修改列的数据类型的方法:<br>
+> alter table student modify column sname varchar(20);
+
+同时修改列名和列的数据类型的方法:<br>
+> alter table student change column sname stuname varchar(20);
+
+# SQL
+
+创建模式
+> create schema <schema_name> aothorization <user_name>
+
+删除模式,表
+> drop schema <schema_name> [cascade|restrict]
+> drop table <table_name>[cascade|restrict]
+
+
+定义外键
+> foregin (key) <key_name...> reference table_name(property)
+
+定义主键
+> primary key (key1,key2)
+
+添加一列
+> alter table <table_name> add column <column_name> <datetype> [constraint_name]
+
+添加表级约束[primary key,foreign key,unique,check]
+>alter table <table_name> add <constraint>
+
+删除一列
+> alter table <table_name> drop column <column_name>[cascade|restrict]
+
+删除表级约束
+> alter table <table_name> drop constraint <constraint_name>[cascade|restrict]
+
+修改列类型
+> alter table <table_name> alter column <column_name><type>
+
+自身连接查找
+> select first.col,second.col2 from table first,table second where first.no=second.no
+
+外连接
+> select table_col from table left outer join table on(table_col=table_col)
 
